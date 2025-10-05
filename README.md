@@ -11,3 +11,22 @@ Aplicar PUD (análisis–diseño–implementación–pruebas), UML, diseño de B
 
 ## Estructura del repositorio
 
+
+## Diagramas y documentación
+- Ver [`docs/README.md`](docs/README.md) (Casos de uso, Clases, Secuencia, Actividad y ER).
+
+## Base de datos (MySQL)
+- Script de creación de tablas: [`sql/tablas.sql`](sql/tablas.sql)  
+- Datos semilla y ejemplos: [`sql/inserts.sql`](sql/inserts.sql)  
+- Consultas (consolidado mensual y variaciones): [`sql/consultas.sql`](sql/consultas.sql)
+
+## API (prototipo Java)
+- Endpoints y especificación: [`api/openapi.yaml`](api/openapi.yaml)  
+- Guía de uso del prototipo: [`api/README.md`](api/README.md)
+
+## Entrega académica
+Este repositorio acompaña el **AP2** del Seminario. El informe PDF hace referencia a este repositorio como evidencia de código, diagramas y scripts.
+
+## Autor
+Matías Ibáñez — Lic. en Informática
+
