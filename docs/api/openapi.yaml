@@ -1,0 +1,80 @@
+openapi: 3.0.3
+info:
+  title: ProveedoresArg API (Prototipo)
+  version: "0.1.0"
+servers:
+  - url: https://api.proveedoresarg.local
+paths:
+  /auth/register-proveedor:
+    post:
+      summary: Registrarse como proveedor
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, cuit, razonSocial]
+              properties:
+                email: { type: string, format: email }
+                cuit: { type: string }
+                razonSocial: { type: string }
+                rubro: { type: string }
+                zonas: { type: string }
+                whatsapp: { type: string }
+      responses:
+        "201": { description: Registrado (pendiente de verificación) }
+  /auth/login:
+    post:
+      summary: Autenticación
+      responses:
+        "200": { description: JWT emitido }
+  /proveedores:
+    get:
+      summary: Buscar proveedores
+      parameters:
+        - in: query; name: rubro; schema: { type: string }
+        - in: query; name: zona; schema: { type: string }
+        - in: query; name: q; schema: { type: string }
+      responses:
+        "200": { description: Listado }
+  /proveedores/{id}:
+    get:
+      summary: Ver ficha de proveedor
+      parameters:
+        - in: path; name: id; required: true; schema: { type: string }
+      responses:
+        "200": { description: Ficha del proveedor }
+  /proveedores/{id}/eventos:
+    post:
+      summary: Registrar evento de analítica
+      parameters:
+        - in: path; name: id; required: true; schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [tipo]
+              properties:
+                tipo:
+                  type: string
+                  enum: [IMPRESION, VISTA, CLICK_WHATSAPP, CLICK_CATALOGO]
+                origen: { type: string }
+      responses:
+        "201": { description: Evento registrado }
+  /admin/proveedores/{id}/validar:
+    post:
+      summary: Validar proveedor (ADMIN)
+      parameters:
+        - in: path; name: id; required: true; schema: { type: string }
+      responses:
+        "200": { description: Validado }
+  /admin/reportes/generar:
+    post:
+      summary: Generar reportes del período
+      parameters:
+        - in: query; name: periodo; required: true; schema: { type: string } # YYYY-MM
+      responses:
+        "202": { description: Proceso de generación lanzado }
