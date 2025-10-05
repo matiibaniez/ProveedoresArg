@@ -1,0 +1,19 @@
+# Java / Maven / Gradle
+target/
+build/
+out/
+*.iml
+.idea/
+.gradle/
+.mvn/wrapper/maven-wrapper.jar
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Node / Web 
+node_modules/
+dist/
